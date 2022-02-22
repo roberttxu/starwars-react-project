@@ -4,7 +4,7 @@ import Table from "./components/Table";
 import BarChart from "./components/BarChart";
 import getPlanetData from "./helpers/RetrieveData";
 import { Dropdown } from "react-bootstrap";
-import { API_URL, CATEGORIES } from "./constants/Constants";
+import { API_URL, CATEGORIES, INITIAL_SELECT } from "./constants/Constants";
 
 function ChartSection() {
   const [planetData, setPlanetData] = useState([]);
@@ -51,7 +51,7 @@ function ChartSection() {
       <div>
         <Dropdown>
           <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {isInitialSelection ? "Select Initial Category" : barChartTitle}
+            {isInitialSelection ? INITIAL_SELECT : barChartTitle}
           </Dropdown.Toggle>
           <Dropdown.Menu>
             {[1, 2, 3, 4, 6].map((index) => {
@@ -68,7 +68,11 @@ function ChartSection() {
             })}
           </Dropdown.Menu>
         </Dropdown>
-        <BarChart data={planetData} category={barChartCategory} titleCategory ={barChartTitle} />
+        <BarChart
+          data={planetData}
+          category={barChartCategory}
+          titleCategory={barChartTitle}
+        />
         <Table columns={columns} data={planetData} />
       </div>
     </section>

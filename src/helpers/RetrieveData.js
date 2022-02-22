@@ -3,7 +3,7 @@ function RetrieveData(url, planets = []) {
     fetch(url)
       .then((response) => {
         if (response.status !== 200) {
-          throw "${response.status}: ${response.statusText}";
+          throw response.status + ": " + response.statusText;
         }
         response
           .json()
