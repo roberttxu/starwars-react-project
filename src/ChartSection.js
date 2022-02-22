@@ -29,58 +29,63 @@ function ChartSection() {
       .catch(console.error);
   }, []);
 
-  if (isLoading) {
-    return (
-      <section>
-        <h1>Chart Section Title</h1>
-        <div>
-          <Oval
-            className="loader"
-          />
-        </div>
-      </section>
-    );
-  }
-
   function handleChartCategorySelection(category) {
     setBarChartCategory(category.accessor);
     setBarChartTitle(category.Header);
     setIsInitialSelection(false);
   }
 
+  if (isLoading) {
+    return (
+      <section>
+        <h2>Planetary Data Overview</h2>
+        <div className="centered">
+          <Oval />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <>
       <h2>Planetary Data Overview</h2>
       <section>
-        <nav>
-          <div>Select a category to display on the bar chart</div>
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              {isInitialSelection ? INITIAL_SELECT : barChartTitle}
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              {[1, 2, 3, 4, 6].map((index) => {
-                return (
-                  <Dropdown.Item
-                    key={index}
-                    onClick={() =>
-                      handleChartCategorySelection(CATEGORIES[index])
-                    }
-                  >
-                    {CATEGORIES[index].Header}
-                  </Dropdown.Item>
-                );
-              })}
-            </Dropdown.Menu>
-          </Dropdown>
-        </nav>
-
-        <BarChart
-          data={planetData}
-          category={barChartCategory}
-          titleCategory={barChartTitle}
-        />
-        <Table columns={columns} data={planetData} />
+        <div className="charts">
+          <div>
+            <nav className="header">
+              <div>Select a category to display on the bar chart</div>
+              <Dropdown>
+                <Dropdown.Toggle
+                  variant="secondary"
+                  id="dropdown-button-dark-example1"
+                >
+                  {isInitialSelection ? INITIAL_SELECT : barChartTitle}
+                </Dropdown.Toggle>
+                <Dropdown.Menu>
+                  {[1, 2, 3, 4, 6].map((index) => {
+                    return (
+                      <Dropdown.Item
+                        key={index}
+                        onClick={() =>
+                          handleChartCategorySelection(CATEGORIES[index])
+                        }
+                      >
+                        {CATEGORIES[index].Header}
+                      </Dropdown.Item>
+                    );
+                  })}
+                </Dropdown.Menu>
+              </Dropdown>
+            </nav>
+            <BarChart
+              data={planetData}
+              category={barChartCategory}
+              titleCategory={barChartTitle}
+            />
+          </div>
+          <h3>Planetary Information</h3>
+          <Table className="table" columns={columns} data={planetData} />
+        </div>
       </section>
     </>
   );

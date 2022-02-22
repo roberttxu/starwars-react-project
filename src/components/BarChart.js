@@ -14,7 +14,26 @@ function BarChart({ data, category, titleCategory }) {
           type: "bar",
         },
       ]}
-      layout={{ title: "Planet " + titleCategory, width: "1000" }}
+      layout={{
+        title: {
+          text: "Planet " + titleCategory,
+          font: {
+            color: "#fff",
+          },
+        },
+        width: "1200",
+        paper_bgcolor: "rgba(0,0,0,0.5)",
+        plot_bgcolor: "rgba(0,0,0,0.5)",
+        margin: {
+          l: 40,
+          r: 10,
+          b: 100,
+          t: 80,
+        },
+        font: {
+          color: "#fff",
+        },
+      }}
     />
   );
 }

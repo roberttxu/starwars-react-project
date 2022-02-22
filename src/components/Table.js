@@ -27,7 +27,7 @@ function Table({ columns, data }) {
   );
 
   return (
-    <>
+    <div>
       <table {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -53,7 +53,7 @@ function Table({ columns, data }) {
           })}
         </tbody>
       </table>
-      <div className="pagination">
+      <div>
         <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           {"<<"}
         </button>{" "}
@@ -90,14 +90,14 @@ function Table({ columns, data }) {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[10, 20, 30, 40, 50].map((pageSize) => (
+          {[5, 10].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
           ))}
         </select>
       </div>
-    </>
+    </div>
   );
 }
 
