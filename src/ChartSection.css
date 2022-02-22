@@ -1,0 +1,10 @@
+.loader {
+  position: fixed; /* or absolute */
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%);
+
+  height: "100";
+  width: "100";
+  color: "grey";
+}

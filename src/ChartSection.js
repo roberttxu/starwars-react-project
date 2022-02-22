@@ -5,6 +5,7 @@ import BarChart from "./components/BarChart";
 import getPlanetData from "./helpers/RetrieveData";
 import { Dropdown } from "react-bootstrap";
 import { API_URL, CATEGORIES, INITIAL_SELECT } from "./constants/Constants";
+import "./ChartSection.css";
 
 function ChartSection() {
   const [planetData, setPlanetData] = useState([]);
@@ -33,7 +34,9 @@ function ChartSection() {
       <section>
         <h1>Chart Section Title</h1>
         <div>
-          <Oval height="100" width="100" color="grey" ariaLabel="loading" />
+          <Oval
+            className="loader"
+          />
         </div>
       </section>
     );
@@ -46,36 +49,40 @@ function ChartSection() {
   }
 
   return (
-    <section>
-      <h1>Planetary Data Overview</h1>
-      <div>
-        <Dropdown>
-          <Dropdown.Toggle variant="success" id="dropdown-basic">
-            {isInitialSelection ? INITIAL_SELECT : barChartTitle}
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            {[1, 2, 3, 4, 6].map((index) => {
-              return (
-                <Dropdown.Item
-                  key={index}
-                  onClick={() =>
-                    handleChartCategorySelection(CATEGORIES[index])
-                  }
-                >
-                  {CATEGORIES[index].Header}
-                </Dropdown.Item>
-              );
-            })}
-          </Dropdown.Menu>
-        </Dropdown>
+    <>
+      <h2>Planetary Data Overview</h2>
+      <section>
+        <nav>
+          <div>Select a category to display on the bar chart</div>
+          <Dropdown>
+            <Dropdown.Toggle variant="success" id="dropdown-basic">
+              {isInitialSelection ? INITIAL_SELECT : barChartTitle}
+            </Dropdown.Toggle>
+            <Dropdown.Menu>
+              {[1, 2, 3, 4, 6].map((index) => {
+                return (
+                  <Dropdown.Item
+                    key={index}
+                    onClick={() =>
+                      handleChartCategorySelection(CATEGORIES[index])
+                    }
+                  >
+                    {CATEGORIES[index].Header}
+                  </Dropdown.Item>
+                );
+              })}
+            </Dropdown.Menu>
+          </Dropdown>
+        </nav>
+
         <BarChart
           data={planetData}
           category={barChartCategory}
           titleCategory={barChartTitle}
         />
         <Table columns={columns} data={planetData} />
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 
