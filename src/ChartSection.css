@@ -9,11 +9,6 @@
   color: "grey";
 }
 
-.table {
-  border-spacing: 0;
-  border: 1px solid black;
-}
-
 .charts {
   display: flex;
   flex-direction: column;
