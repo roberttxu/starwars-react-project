@@ -4,7 +4,7 @@ import Table from "./components/Table";
 import BarChart from "./components/BarChart";
 import getPlanetData from "./helpers/RetrieveData";
 import { Dropdown } from "react-bootstrap";
-import { API_URL, CATEGORIES, INITIAL_SELECT } from "./constants/Constants";
+import { API_URL, CATEGORIES, INITIAL_SELECT_MESSAGE } from "./constants/Constants";
 import "./ChartSection.css";
 
 function ChartSection() {
@@ -35,21 +35,17 @@ function ChartSection() {
     setIsInitialSelection(false);
   }
 
-  if (isLoading) {
-    return (
-      <section>
-        <h2>Planetary Data Overview</h2>
-        <div className="centered">
-          <Oval />
-        </div>
-      </section>
-    );
-  }
-
-  return (
-    <>
-      <h2>Planetary Data Overview</h2>
-      <section>
+  function ChartBody() {
+    if (isLoading) {
+      return (
+        <>
+          <div className="centered">
+            <Oval />
+          </div>
+        </>
+      );
+    } else {
+      return (
         <div className="charts">
           <div>
             <nav className="header">
@@ -59,7 +55,7 @@ function ChartSection() {
                   variant="secondary"
                   id="dropdown-button-dark-example1"
                 >
-                  {isInitialSelection ? INITIAL_SELECT : barChartTitle}
+                  {isInitialSelection ? INITIAL_SELECT_MESSAGE : barChartTitle}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   {[1, 2, 3, 4, 6].map((index) => {
@@ -84,8 +80,17 @@ function ChartSection() {
             />
           </div>
           <h3>Planetary Information</h3>
-          <Table className="table" columns={columns} data={planetData} />
+          <Table columns={columns} data={planetData} />
         </div>
+      );
+    }
+  }
+
+  return (
+    <>
+      <h2>Planetary Data Overview</h2>
+      <section>
+        <ChartBody />
       </section>
     </>
   );
