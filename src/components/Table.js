@@ -27,8 +27,13 @@ function Table({ columns, data }) {
   );
 
   return (
-    <div>
-      <table {...getTableProps()}>
+    <>
+      <table
+        style={{
+          "background-color": "rgba(0,0,0,0.5)",
+        }}
+        {...getTableProps()}
+      >
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -90,14 +95,14 @@ function Table({ columns, data }) {
             setPageSize(Number(e.target.value));
           }}
         >
-          {[5, 10].map((pageSize) => (
+          {[10, 20, 30].map((pageSize) => (
             <option key={pageSize} value={pageSize}>
               Show {pageSize}
             </option>
           ))}
         </select>
       </div>
-    </div>
+    </>
   );
 }
 
