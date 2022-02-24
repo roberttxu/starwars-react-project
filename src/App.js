@@ -6,7 +6,7 @@ import ChartSection from "./ChartSection";
 function App() {
   return (
     <div className="App">
-      <h1 style={{"margin":"2%"}}>Starwars Dashboard</h1>
+      <h1 className="header">Starwars Dashboard</h1>
       <section>
         <ChartSection />
       </section>

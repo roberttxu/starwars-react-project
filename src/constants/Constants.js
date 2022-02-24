@@ -1,5 +1,6 @@
 export const API_URL = "https://swapi.dev/api/planets/";
 export const INITIAL_SELECT_MESSAGE = "Select Initial Category";
+export const GRAPHABLE_INDICES = [1, 2, 3, 4, 6];
 export const CATEGORIES = [
   {
     Header: "Name",

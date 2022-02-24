@@ -4,7 +4,12 @@ import Table from "./components/Table";
 import BarChart from "./components/BarChart";
 import getPlanetData from "./helpers/RetrieveData";
 import { Dropdown } from "react-bootstrap";
-import { API_URL, CATEGORIES, INITIAL_SELECT_MESSAGE } from "./constants/Constants";
+import {
+  API_URL,
+  CATEGORIES,
+  INITIAL_SELECT_MESSAGE,
+  GRAPHABLE_INDICES,
+} from "./constants/Constants";
 import "./ChartSection.css";
 
 function ChartSection() {
@@ -58,10 +63,11 @@ function ChartSection() {
                   {isInitialSelection ? INITIAL_SELECT_MESSAGE : barChartTitle}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  {[1, 2, 3, 4, 6].map((index) => {
+                  {GRAPHABLE_INDICES.map((index) => {
                     return (
                       <Dropdown.Item
                         key={index}
+                        data-testid="select-option"
                         onClick={() =>
                           handleChartCategorySelection(CATEGORIES[index])
                         }
